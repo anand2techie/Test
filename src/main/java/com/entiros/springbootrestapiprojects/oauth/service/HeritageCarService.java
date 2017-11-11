@@ -3,7 +3,6 @@ package com.entiros.springbootrestapiprojects.oauth.service;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-
 import com.entiros.springbootrestapiprojects.oauth.model.HeritageCar;
 
 
@@ -21,5 +20,4 @@ public interface HeritageCarService  {
     void deleteHeritageCarById(String heritageCarId);
     
     BufferedImage getHeritageCarImageById(String id);
-
 }

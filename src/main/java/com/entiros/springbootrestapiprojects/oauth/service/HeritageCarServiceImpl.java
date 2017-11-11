@@ -29,13 +29,19 @@ public class HeritageCarServiceImpl implements HeritageCarService {
     public void setHeritageCarRepository(HeritageCarRepository heritageCarRepository) {
         this.heritageCarRepository = heritageCarRepository;
     }
+ /*   
+    private AccountsRepository accountsRepository;
+
+    @Autowired
+    public void setAccountsRepository(AccountsRepository accountsRepository) {
+        this.accountsRepository = accountsRepository;
+    }*/
 
     @Override
     public Iterable<HeritageCar> listAllHeritageCars() {
         logger.debug("listAllHeritageCars called");
         return heritageCarRepository.findAll();
     }
-
 
     @Override
     public HeritageCar getHeritageCarById(String id) {
@@ -93,6 +99,5 @@ public class HeritageCarServiceImpl implements HeritageCarService {
 		
 		return heritageCarImage;
 	}
-
 }
 //    findOne(Integer.valueOf(String.valueOf(id)))

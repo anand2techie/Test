@@ -3,11 +3,15 @@ package com.entiros.springbootrestapiprojects.oauth.controller;
 
 import com.entiros.springbootrestapiprojects.oauth.model.HeritageCar;
 import com.entiros.springbootrestapiprojects.oauth.service.HeritageCarService;
+import com.entiros.springbootrestapiprojects.oauth.model.ErrorModel;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiKeyAuthDefinition;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
 import io.swagger.annotations.SwaggerDefinition;
 import io.swagger.annotations.Tag;
 
@@ -17,8 +21,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
@@ -53,6 +60,7 @@ public class HeritageCarController {
 		Iterable<HeritageCar> heritageCarList = heritageCarService.listAllHeritageCars();
 		return heritageCarList;
 	}
+
 
 	/*// ----------Get a Heritage Car by ID-----------
 	@ApiOperation(value = "Display information of heritage Car corresponding to a specific ID", response = HeritageCar.class)
