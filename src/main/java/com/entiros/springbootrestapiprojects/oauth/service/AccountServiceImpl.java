@@ -1,8 +1,10 @@
 package com.entiros.springbootrestapiprojects.oauth.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.persistence.Temporal;
 import javax.transaction.Transactional;
 
 import org.joda.time.DateTime;
