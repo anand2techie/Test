@@ -2,11 +2,13 @@ package com.entiros.springbootrestapiprojects.oauth.model;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class HeritageCar {
+public class HeritageCar implements Serializable{
 
 
     @ApiModelProperty(value = "This corresponds to the ID of a Heritage Car")

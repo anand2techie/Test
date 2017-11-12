@@ -1,8 +1,8 @@
 package com.entiros.springbootrestapiprojects.oauth.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,8 +16,13 @@ import javax.validation.Valid;
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-11T03:55:25.506Z")
 @Entity
-public class Account   {
-  @JsonProperty("id")
+public class Account  implements Serializable {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7434282649038801804L;
+
+@JsonProperty("id")
   @Id
   private String id = null;
 

@@ -1,5 +1,6 @@
 package com.entiros.springbootrestapiprojects.oauth.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,7 +18,12 @@ import javax.validation.Valid;
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-11T03:55:25.506Z")
 @Entity
-public class SingleBalance {
+public class SingleBalance implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3738216397113453547L;
+
 	@Id
 	private String id = null;
 	

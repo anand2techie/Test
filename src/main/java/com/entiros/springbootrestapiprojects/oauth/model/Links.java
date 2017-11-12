@@ -1,5 +1,6 @@
 package com.entiros.springbootrestapiprojects.oauth.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -12,9 +13,14 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2017-11-11T03:55:25.506Z")
 @Entity
-public class Links   {
+public class Links  implements Serializable {
 	
-  @Id
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 740090674701760884L;
+
+@Id
   @JsonProperty("redirect")
   private String redirect = null;
 
