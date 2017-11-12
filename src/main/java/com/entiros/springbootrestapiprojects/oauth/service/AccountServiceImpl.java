@@ -29,9 +29,9 @@ public class AccountServiceImpl implements AccountService {
 		this.acccountRepository = acccountRepository;
 	}
 
-	public Iterable<Account> listAllAccounts(boolean isStaticData, String withBalance) {
+	public Iterable<Account> listAllAccounts(String isStaticData, String withBalance) {
 
-		if (isStaticData) {
+		if (isStaticData.equalsIgnoreCase("Y")) {
 			//list creation
 			List<Account> accountsList = new ArrayList<Account>();
 			
@@ -39,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
 			Account account1 = setMiscData();
 
 			//condition to check based on withBalance
-			if (withBalance.equals("true")) {
+			if (withBalance.equalsIgnoreCase("true")) {
 				Balances balances = setBalances();
 				/*
 				 * balances.setAuthorised(authorised);

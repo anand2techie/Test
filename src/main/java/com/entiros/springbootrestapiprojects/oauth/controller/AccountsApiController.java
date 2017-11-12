@@ -5,6 +5,7 @@ import java.util.UUID;
 import io.swagger.annotations.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,10 @@ public class AccountsApiController implements AccountsApi {
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Value("${isStatic}")
+    private String isStatic;
+
 
 	public void setAccountService(AccountService accountService) {
 		this.accountService = accountService;
@@ -68,7 +73,7 @@ public class AccountsApiController implements AccountsApi {
 			@ApiParam(value = "To be used, if no OAuth Pre-Step was performed.") @RequestHeader(value = "PSU-ID", required = false) String PSU_ID,
 			@ApiParam(value = "Is contained only, if the optional OAuth PreStep was performed.") @RequestHeader(value = "Authorization Bearer", required = false) String authorizationBearer) {
 		// do some magic!
-		return accountService.listAllAccounts(true,withBalance);
+		return accountService.listAllAccounts(isStatic,withBalance);
 	}
 
 	public ResponseEntity saveAccount(@RequestBody Account account) {
