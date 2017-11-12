@@ -1,5 +1,6 @@
 package com.entiros.springbootrestapiprojects.oauth.controller;
 
+import java.util.Iterator;
 import java.util.UUID;
 
 import io.swagger.annotations.*;
@@ -73,7 +74,27 @@ public class AccountsApiController implements AccountsApi {
 			@ApiParam(value = "To be used, if no OAuth Pre-Step was performed.") @RequestHeader(value = "PSU-ID", required = false) String PSU_ID,
 			@ApiParam(value = "Is contained only, if the optional OAuth PreStep was performed.") @RequestHeader(value = "Authorization Bearer", required = false) String authorizationBearer) {
 		// do some magic!
-		return accountService.listAllAccounts(isStatic,withBalance);
+		Iterable<Account> accountsList=accountService.listAllAccounts(isStatic,withBalance);
+		
+		if(withBalance.equalsIgnoreCase("true"))
+		{
+			return accountsList;
+		}
+		else
+		{
+			return markBalanceOfAllAccountsAsNull(accountsList);
+		}
+	}
+
+	private Iterable<Account> markBalanceOfAllAccountsAsNull(Iterable<Account> accountsList) {
+		// TODO Auto-generated method stub
+		Iterator<Account> accountsListItr=accountsList.iterator();
+		while(accountsListItr.hasNext())
+		{
+			Account account=accountsListItr.next();
+			account.setBalances(null);
+		}
+		return accountsList;
 	}
 
 	public ResponseEntity saveAccount(@RequestBody Account account) {

@@ -1,0 +1,13 @@
+use springbootdb;
+
+desc balances;
+select * from account;
+
+insert into amount values('1',100,'EUR');
+insert into single_balance values('1','10112017','10112017','1');
+insert into balances(id,booked_id) values('1','1');
+
+insert into account(id,account_type,iban,bic,currency,balances_id) values('1','Main Account','SE0000000000001234567890','ENTISEIG','SEK','1');
+
+update account set balances_id='1' where id in('1','2') ;
+insert into account(id,account_type,iban,bic,currency,balances_id) values('2','Test Account','SE0000000000001234564567','AACBFRXX','INR','1');

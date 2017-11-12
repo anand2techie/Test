@@ -27,7 +27,7 @@ security:
 # Server configuration
 server:
  port: 8181
-isStatic: N
+isStatic: Y
 
 
 #spring:
