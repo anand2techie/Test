@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -34,7 +35,7 @@ public class SingleBalance {
 	}
 	
 	@JsonProperty("amount")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private Amount amount = null;
 
 	@JsonProperty("last_action_date_time")

@@ -4,7 +4,7 @@ import com.entiros.springbootrestapiprojects.oauth.model.Account;
 
 public interface AccountService {
 
-	Iterable<Account> listAllAccounts();
+	Iterable<Account> listAllAccounts(boolean isStaticData,String withBalance);
 
 	Account saveAccounts(Account account);
 }

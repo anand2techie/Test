@@ -68,7 +68,7 @@ public class AccountsApiController implements AccountsApi {
 			@ApiParam(value = "To be used, if no OAuth Pre-Step was performed.") @RequestHeader(value = "PSU-ID", required = false) String PSU_ID,
 			@ApiParam(value = "Is contained only, if the optional OAuth PreStep was performed.") @RequestHeader(value = "Authorization Bearer", required = false) String authorizationBearer) {
 		// do some magic!
-		return accountService.listAllAccounts();
+		return accountService.listAllAccounts(true,withBalance);
 	}
 
 	public ResponseEntity saveAccount(@RequestBody Account account) {

@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -40,15 +41,15 @@ public class Account   {
   private String bic = null;
 
   @JsonProperty("balances")
-  @OneToOne
+  @OneToOne(cascade=CascadeType.PERSIST)
   private Balances balances = null;
 
   @JsonProperty("currency")
   private String currency = null;
-
+/*
   @JsonProperty("links")
-  @OneToOne
-  private Links links = null;
+  @OneToOne(cascade=CascadeType.PERSIST)
+  private Links links = null;*/
 
   public Account id(String id) {
     this.id = id;
@@ -251,15 +252,15 @@ public class Account   {
     this.currency = currency;
   }
 
-  public Account links(Links links) {
+/*  public Account links(Links links) {
     this.links = links;
     return this;
   }
 
-   /**
+   *//**
    * Links to the account, which can be directly used for retrieving account information from this dedicated account. Links to “balances” and/or “transactions”
    * @return links
-  **/
+  **//*
   @ApiModelProperty(value = "Links to the account, which can be directly used for retrieving account information from this dedicated account. Links to “balances” and/or “transactions”")
 
   @Valid
@@ -271,7 +272,7 @@ public class Account   {
   public void setLinks(Links links) {
     this.links = links;
   }
-
+*/
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -291,13 +292,13 @@ public class Account   {
         Objects.equals(this.accountType, account.accountType) &&
         Objects.equals(this.bic, account.bic) &&
         Objects.equals(this.balances, account.balances) &&
-        Objects.equals(this.currency, account.currency) &&
-        Objects.equals(this.links, account.links);
+        Objects.equals(this.currency, account.currency);
+       // Objects.equals(this.links, account.links);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, iban, bban, pan, msisdn, name, accountType, bic, balances, currency, links);
+    return Objects.hash(id, iban, bban, pan, msisdn, name, accountType, bic, balances, currency);
   }
 
   @Override
@@ -315,7 +316,7 @@ public class Account   {
     sb.append("    bic: ").append(toIndentedString(bic)).append("\n");
     sb.append("    balances: ").append(toIndentedString(balances)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
+    //sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("}");
     return sb.toString();
   }

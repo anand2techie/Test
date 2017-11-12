@@ -4,6 +4,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -33,27 +34,27 @@ public class Balances {
 	}
 
 	@JsonProperty("booked")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance booked = null;
 
 	@JsonProperty("expected")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance expected = null;
 
 	@JsonProperty("authorised")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance authorised = null;
 
 	@JsonProperty("opening_booked")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance openingBooked = null;
 
 	@JsonProperty("closing_booked")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance closingBooked = null;
 
 	@JsonProperty("interim_available")
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private SingleBalance interimAvailable = null;
 
 	public Balances booked(SingleBalance booked) {
