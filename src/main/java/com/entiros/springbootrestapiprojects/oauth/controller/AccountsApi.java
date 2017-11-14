@@ -33,19 +33,18 @@ import javax.validation.Valid;
 @Api(value = "accounts", description = "the accounts API")
 public interface AccountsApi {
 
-    @ApiOperation(value = "Account resource", notes = "Reads the balance of a given account if the additional parameter “with-balance” is added, otherwise just gives detailed information about the addressed account.", response = Void.class, authorizations = {
+    @ApiOperation(value = "Account resource", notes = "Reads the balance of a given account if the additional parameter “with-balance” is added, otherwise just gives detailed information about the addressed account.", response = Account.class, authorizations = {
         @Authorization(value = "APIKeyQueryParam")
     }, tags={ "account", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "OK", response = Void.class),
+        @ApiResponse(code = 200, message = "OK", response = Account.class),
         @ApiResponse(code = 400, message = "Bad Request", response = ErrorModel.class),
         @ApiResponse(code = 500, message = "Internal Server Error", response = ErrorModel.class) })
     
     @RequestMapping(value = "/accounts/{account-id}",
         produces = { "application/json" }, 
-        consumes = { "application/json" },
         method = RequestMethod.GET)
-    ResponseEntity<Void> accountsAccountIdGet(@ApiParam(value = "Account ID",required=true ) @PathVariable("account-id") Integer accountId, @NotNull@ApiParam(value = "Including the balance od the account.", required = true, allowableValues = "true, false") @RequestParam(value = "with-balance", required = true) String withBalance,@ApiParam(value = "ID of the transaction as determined by the initiating party. In case of a once off read data request, this Process-ID equals the Process-ID of the corresponding Account Information Consent Request." ,required=true) @RequestHeader(value="Process-ID", required=true) UUID processID,@ApiParam(value = "" ,required=true) @RequestHeader(value="Request-ID", required=true) UUID requestID,@ApiParam(value = "Standard https header element for Date and Time." ,required=true) @RequestHeader(value="date", required=true) String date,@ApiParam(value = "" ) @RequestHeader(value="Consent-ID", required=false) String consentID,@ApiParam(value = "To be used, if no OAuth Pre-Step was performed." ) @RequestHeader(value="PSU-ID", required=false) String PSU_ID,@ApiParam(value = "Is contained only, if the optional OAuth PreStep was performed." ) @RequestHeader(value="Authorization Bearer", required=false) String authorizationBearer);
+    Account accountsAccountIdGet(@ApiParam(value = "Account ID",required=true ) @PathVariable("account-id") String accountId, @NotNull@ApiParam(value = "Including the balance od the account.", required = true, allowableValues = "true, false") @RequestParam(value = "with-balance", required = true) String withBalance,@ApiParam(value = "ID of the transaction as determined by the initiating party. In case of a once off read data request, this Process-ID equals the Process-ID of the corresponding Account Information Consent Request." ,required=true) @RequestHeader(value="Process-ID", required=true) UUID processID,@ApiParam(value = "" ,required=true) @RequestHeader(value="Request-ID", required=true) UUID requestID,@ApiParam(value = "Standard https header element for Date and Time." ,required=true) @RequestHeader(value="date", required=true) String date,@ApiParam(value = "" ) @RequestHeader(value="Consent-ID", required=false) String consentID,@ApiParam(value = "To be used, if no OAuth Pre-Step was performed." ) @RequestHeader(value="PSU-ID", required=false) String PSU_ID,@ApiParam(value = "Is contained only, if the optional OAuth PreStep was performed." ) @RequestHeader(value="Authorization Bearer", required=false) String authorizationBearer);
 
 
     @ApiOperation(value = "Account resource", notes = "Reads a transaction list For a given account, additional parameters are e.g. the attributes “date_from” and “date_to”. If the attribute “withbalance” is used, the ASPSP will add balances to the transaction list. The latter might be provided by the ASPSP anyhow, if transaction lists without balances are not supported.", response = Void.class, authorizations = {

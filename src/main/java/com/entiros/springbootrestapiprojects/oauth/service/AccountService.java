@@ -7,4 +7,6 @@ public interface AccountService {
 	Iterable<Account> listAllAccounts(String isStaticData,String withBalance);
 
 	Account saveAccounts(Account account);
+	
+	Account getAccountById(String accountId,String isStaticData,String withBalance);
 }

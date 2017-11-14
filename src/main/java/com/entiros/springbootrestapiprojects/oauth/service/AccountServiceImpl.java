@@ -34,41 +34,46 @@ public class AccountServiceImpl implements AccountService {
 	public Iterable<Account> listAllAccounts(String isStaticData, String withBalance) {
 
 		if (isStaticData.equalsIgnoreCase("Y")) {
-			//list creation
-			List<Account> accountsList = new ArrayList<Account>();
-			
-			//list's misc. data
-			Account account1 = setMiscData();
-
-			//condition to check based on withBalance
-			if (withBalance.equalsIgnoreCase("true")) {
-				Balances balances = setBalances();
-				/*
-				 * balances.setAuthorised(authorised);
-				 * balances.setClosingBooked(closingBooked);
-				 * balances.setExpected(expected);
-				 * balances.setInterimAvailable(interimAvailable);
-				 * balances.setOpeningBooked(openingBooked);
-				 */
-				account1.setBalances(balances);
-			}
-			accountsList.add(account1);
+			List<Account> accountsList = createAccountsList(withBalance);
 			return accountsList;
 		} else {
 			return acccountRepository.findAll();
 		}
 	}
 
+	private List<Account> createAccountsList(String withBalance) {
+		// list creation
+		List<Account> accountsList = new ArrayList<Account>();
+
+		// list's misc. data
+		Account account1 = setMiscData();
+
+		// condition to check based on withBalance
+		if (withBalance.equalsIgnoreCase("true")) {
+			Balances balances = setBalances();
+			/*
+			 * balances.setAuthorised(authorised);
+			 * balances.setClosingBooked(closingBooked);
+			 * balances.setExpected(expected);
+			 * balances.setInterimAvailable(interimAvailable);
+			 * balances.setOpeningBooked(openingBooked);
+			 */
+			account1.setBalances(balances);
+		}
+		accountsList.add(account1);
+		return accountsList;
+	}
+
 	private Account setMiscData() {
 		Account account1 = new Account();
 		account1.setBic("ENTISEIG");
 		account1.setAccountType("Main account");
-		//account1.setBban("");
+		// account1.setBban("");
 		account1.setCurrency("SEK");
 		account1.setIban("SE0000000000001234567890");
-		//account1.setMsisdn("");
-		//account1.setName("");
-		//account1.setPan("");
+		// account1.setMsisdn("");
+		// account1.setName("");
+		// account1.setPan("");
 		account1.setId("54fbbfb6-c314-11e7-abc4-cec278b6b50a");
 		return account1;
 	}
@@ -104,6 +109,25 @@ public class AccountServiceImpl implements AccountService {
 	public Account saveAccounts(Account account) {
 		// TODO Auto-generated method stub
 		return acccountRepository.save(account);
+	}
+
+	@Override
+	public Account getAccountById(String accountId, String isStaticData, String withBalance) {
+		// TODO Auto-generated method stub
+		if (isStaticData.equalsIgnoreCase("Y")) {
+			List<Account> accountsList = createAccountsList(withBalance);
+			Iterator<Account> accountsListItr = accountsList.iterator();
+
+			while (accountsListItr.hasNext()) {
+				Account account = accountsListItr.next();
+				if (account.getId().equalsIgnoreCase(accountId)) {
+					return account;
+				}
+			}
+			return null;
+		} else {
+			return acccountRepository.findOne(accountId);
+		}
 	}
 
 }
